@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import LayoutApp from './components/LayoutApp'
+import RequireAuth from './hoc/RequireAuth'
 import { useAppDispatch, useAppSelector } from './hooks/redux'
 import AuthPage from './pages/AuthPage/AuthPage'
 import MessagePage from './pages/MessagePage/MessagePage'
@@ -20,10 +21,19 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LayoutApp />}>
-        <Route path="users" element={<UsersPage />} />
-        <Route path="message" element={<MessagePage />} />
+        <Route
+          path="users"
+          element={<RequireAuth children={<UsersPage />} />}
+        />
+        <Route
+          path="message"
+          element={<RequireAuth children={<MessagePage />} />}
+        />
         <Route path="profile/:id" element={<ProfilePage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route
+          path="profile"
+          element={<RequireAuth children={<ProfilePage />} />}
+        />
         <Route path="auth" element={<AuthPage />} />
         <Route path="*" element={<Navigate to={'/'} replace />} />
       </Route>
