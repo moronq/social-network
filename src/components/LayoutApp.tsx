@@ -1,7 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
+import { logout } from '../store/slices/authSlice/authSlice'
 
 const LayoutApp = () => {
+  const { isAuth } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
+  const onLogoutClick = () => {
+    dispatch(logout())
+  }
+
   return (
     <>
       <nav className=" bg-slate-200">
@@ -11,6 +19,7 @@ const LayoutApp = () => {
           </div>
           <div className="flex items-center hover:bg-slate-300 px-3 hover:cursor-pointer">
             user
+            {isAuth && <button onClick={onLogoutClick}>Logout</button>}
           </div>
         </div>
       </nav>

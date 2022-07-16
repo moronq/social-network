@@ -1,13 +1,14 @@
 import React, { ReactHTMLElement, useState } from 'react'
-import { useAppDispatch } from '../../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import useInput from '../../hooks/useInput'
-import { login } from '../../store/slices/authSlice/authSlice'
+import { login } from '../../store/slices/authSlice/authAction'
 
 const AuthPage = () => {
   const email = useInput('')
   const password = useInput('')
   const [rememberMe, setRememberMe] = useState(false)
   const dispatch = useAppDispatch()
+  const { error } = useAppSelector((state) => state.auth)
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(
@@ -40,6 +41,7 @@ const AuthPage = () => {
             {...password}
           />
         </label>
+        {error && <p className="text-red-800">{error}</p>}
         <label>
           <input
             type="checkbox"
