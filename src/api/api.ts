@@ -1,5 +1,9 @@
 import axios from 'axios'
-import { userInfoLogin, userInfoLoginResponse } from '../models.ts/auth'
+import {
+  userInfoLogin,
+  userInfoLoginResponse,
+  userLoginCaptcha,
+} from '../models.ts/auth'
 
 const instance = axios.create({
   withCredentials: true,
@@ -18,5 +22,11 @@ export const authAPI = {
   },
   logout() {
     return instance.delete('auth/login')
+  },
+}
+
+export const securityAPI = {
+  getCaptchaURL() {
+    return instance.get<userLoginCaptcha>('security/get-captcha-url')
   },
 }

@@ -11,3 +11,15 @@ export type userInfoLoginResponse = {
     userId: number
   }
 }
+export type userLoginCaptcha = {
+  url: string
+}
+export type userLoginResponseError = {
+  type: 'error'
+  message: string
+}
+export type userLoginResponseCaptcha = {
+  type: 'captcha'
+  captcha: string
+  message: string
+}

@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { userInfoLoginResponse } from '../../../models.ts/auth'
+import {
+  userInfoLoginResponse,
+  userLoginResponseCaptcha,
+  userLoginResponseError,
+} from '../../../models.ts/auth'
 import { login } from './authAction'
 
 type initialStateType = {
@@ -8,6 +12,7 @@ type initialStateType = {
   login: string
   isLoading: boolean
   error: string | null
+  captcha: string | null
 }
 
 const initialState: initialStateType = {
@@ -16,6 +21,7 @@ const initialState: initialStateType = {
   login: '',
   userId: null,
   error: null,
+  captcha: null,
 }
 
 export const authSlice = createSlice({
@@ -44,6 +50,7 @@ export const authSlice = createSlice({
     [login.pending.type]: (state) => {
       state.isLoading = true
       state.error = null
+      state.captcha = null
     },
     [login.fulfilled.type]: (
       state,
@@ -57,10 +64,15 @@ export const authSlice = createSlice({
     },
     [login.rejected.type]: (
       state,
-      action: PayloadAction<{ message: string }>
+      action: PayloadAction<userLoginResponseError | userLoginResponseCaptcha>
     ) => {
       state.isLoading = false
-      state.error = action.payload.message
+      if (action.payload.type === 'captcha') {
+        state.captcha = action.payload.captcha
+        state.error = action.payload.message
+      } else {
+        state.error = action.payload.message
+      }
     },
   },
 })

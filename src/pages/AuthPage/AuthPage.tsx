@@ -6,9 +6,10 @@ import { login } from '../../store/slices/authSlice/authAction'
 const AuthPage = () => {
   const email = useInput('')
   const password = useInput('')
+  const captchaInput = useInput('')
   const [rememberMe, setRememberMe] = useState(false)
   const dispatch = useAppDispatch()
-  const { error } = useAppSelector((state) => state.auth)
+  const { error, captcha } = useAppSelector((state) => state.auth)
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(
@@ -16,7 +17,7 @@ const AuthPage = () => {
         email: email.value,
         password: password.value,
         rememberMe,
-        captcha: null,
+        captcha: captchaInput.value || null,
       })
     )
   }
@@ -49,6 +50,16 @@ const AuthPage = () => {
             onChange={rememberMeHandler}
           />
         </label>
+        {captcha && (
+          <label>
+            <img src={captcha as string} alt="" />
+            <input
+              type="text"
+              className="border-2 border-slate-400"
+              {...captchaInput}
+            />
+          </label>
+        )}
         <button>Войти</button>
       </form>
     </>
