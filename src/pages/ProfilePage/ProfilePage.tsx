@@ -1,7 +1,23 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { useParams } from 'react-router-dom'
 
-const ProfilePage = () => {
-  return <>ProfilePage</>
+type Params = {
+  id?: string
+}
+
+const ProfilePage: FC = () => {
+  // const params = useParams<Params>()
+  // const userId = params.id ??
+  return (
+    <>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+        alt="avatar"
+        width="300px"
+      />
+      <ul></ul>
+    </>
+  )
 }
 
 export default ProfilePage
