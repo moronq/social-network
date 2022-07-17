@@ -33,6 +33,7 @@ const UsersPage = () => {
             name={el.name}
             photo={el.photos.small}
             status={el.status}
+            id={el.id}
           />
         ))}
       </ul>

@@ -7,7 +7,7 @@ type RequireAuthProps = {
 }
 
 const RequireAuth: FC<RequireAuthProps> = ({ children }) => {
-  const { isAuth } = useAppSelector((state) => state.auth)
+  const isAuth = localStorage.getItem('auth')
   const location = useLocation()
   if (!isAuth) {
     return <Navigate to="/auth" state={{ from: location }} />

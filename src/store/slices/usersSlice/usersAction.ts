@@ -15,3 +15,15 @@ export const fetchUsers = createAsyncThunk(
     }
   }
 )
+
+export const follow = createAsyncThunk(
+  'users/follow',
+  async (userId: number, thunkAPI) => {
+    try {
+      const response = await usersAPI.follow(userId)
+      return response.data
+    } catch (e) {
+      return thunkAPI.rejectWithValue('ошибка при подписке')
+    }
+  }
+)

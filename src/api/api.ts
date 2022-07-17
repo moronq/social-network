@@ -43,4 +43,7 @@ export const usersAPI = {
   getUsers(count: number = 10, page: number = 1) {
     return instance.get<UsersTypeResponse>(`users?count=${count}&page=${page}`)
   },
+  follow(userId: number) {
+    return instance.post(`follow/${userId}`)
+  },
 }
