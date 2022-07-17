@@ -3,6 +3,11 @@ export type UsersTypeResponse = {
   totalCount: number
   error: string | null
 }
+
+export type UsersInitialType = UsersTypeResponse & {
+  isLoadingUsers: boolean
+  isFollowing: boolean
+}
 export type UserType = {
   name: string
   id: number
@@ -18,4 +23,10 @@ export type QuerryParams = {
   count: number
   page: number
   term?: string
+}
+export type FollowTypeResponse = {
+  data: {}
+  fieldsErrors: Array<string>
+  messages: Array<string>
+  resultCode: number
 }

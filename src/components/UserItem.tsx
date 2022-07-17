@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { usersAPI } from '../api/api'
 import { useAppDispatch } from '../hooks/redux'
+import { follow, unfollow } from '../store/slices/usersSlice/usersAction'
 import noAvatarSmall from './../assets/img/no-avatar-small.png'
 
 type UserItemType = {
@@ -13,8 +14,13 @@ type UserItemType = {
 }
 
 const UserItem: FC<UserItemType> = ({ photo, name, status, followed, id }) => {
+  const dispatch = useAppDispatch()
   const onFollowClick = () => {
-    usersAPI.follow(id)
+    if (!followed) {
+      dispatch(follow(id))
+    } else {
+      dispatch(unfollow(id))
+    }
   }
 
   return (

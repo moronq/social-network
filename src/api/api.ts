@@ -5,7 +5,7 @@ import {
   userLoginCaptcha,
 } from '../models.ts/auth'
 import { ProfileTypeResponse } from '../models.ts/profile'
-import { UsersTypeResponse } from '../models.ts/users'
+import { FollowTypeResponse, UsersTypeResponse } from '../models.ts/users'
 
 const instance = axios.create({
   withCredentials: true,
@@ -44,6 +44,9 @@ export const usersAPI = {
     return instance.get<UsersTypeResponse>(`users?count=${count}&page=${page}`)
   },
   follow(userId: number) {
-    return instance.post(`follow/${userId}`)
+    return instance.post<FollowTypeResponse>(`follow/${userId}`)
+  },
+  unfollow(userId: number) {
+    return instance.delete(`follow/${userId}`)
   },
 }

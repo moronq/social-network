@@ -21,9 +21,33 @@ export const follow = createAsyncThunk(
   async (userId: number, thunkAPI) => {
     try {
       const response = await usersAPI.follow(userId)
-      return response.data
+      if (response.data.resultCode === 0) {
+        return userId
+      } else if (response.data.resultCode === 1) {
+        throw {
+          message: response.data.messages[0],
+        }
+      }
     } catch (e) {
       return thunkAPI.rejectWithValue('ошибка при подписке')
+    }
+  }
+)
+
+export const unfollow = createAsyncThunk(
+  'users/unfollow',
+  async (userId: number, thunkAPI) => {
+    try {
+      const response = await usersAPI.unfollow(userId)
+      if (response.data.resultCode === 0) {
+        return userId
+      } else if (response.data.resultCode === 1) {
+        throw {
+          message: response.data.messages[0],
+        }
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue('ошибка при отписке')
     }
   }
 )
