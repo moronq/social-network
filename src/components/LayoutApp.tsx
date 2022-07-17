@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { logout } from '../store/slices/authSlice/authSlice'
+import SideBar from './SideBar'
 
 const LayoutApp = () => {
   const { isAuth } = useAppSelector((state) => state.auth)
@@ -23,7 +24,8 @@ const LayoutApp = () => {
           </div>
         </div>
       </nav>
-      <div className="max-w-5xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4 flex gap-4">
+        <SideBar />
         <Outlet />
       </div>
     </>

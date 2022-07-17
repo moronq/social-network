@@ -18,9 +18,12 @@ function App() {
     }
   }, [])
 
+  const { isAuth } = useAppSelector((state) => state.auth)
+
   return (
     <Routes>
       <Route path="/" element={<LayoutApp />}>
+        <Route index element={<Navigate to={'/profile'} replace />} />
         <Route
           path="users"
           element={<RequireAuth children={<UsersPage />} />}
@@ -34,7 +37,10 @@ function App() {
           path="profile"
           element={<RequireAuth children={<ProfilePage />} />}
         />
-        <Route path="auth" element={<AuthPage />} />
+        <Route
+          path="auth"
+          element={isAuth ? <Navigate to={'/profile'} replace /> : <AuthPage />}
+        />
         <Route path="*" element={<Navigate to={'/'} replace />} />
       </Route>
     </Routes>
