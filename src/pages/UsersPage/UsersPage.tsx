@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import ReactPaginate from 'react-paginate'
 import UserItem from '../../components/UserItem'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { fetchUsers } from '../../store/slices/usersSlice/usersAction'
@@ -16,8 +17,13 @@ const UsersPage = () => {
     dispatch(fetchUsers(querryParams))
   }, [])
 
+  const pageCount = Math.ceil(totalCount / querryParams.count)
+  const handlePageClick = (e: any) => {
+    dispatch(fetchUsers({ ...querryParams, page: e.selected + 1 }))
+  }
+
   return (
-    <>
+    <main>
       Users List
       <ul>
         {items.map((el) => (
@@ -30,16 +36,19 @@ const UsersPage = () => {
           />
         ))}
       </ul>
-      {/* <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      /> */}
-    </>
+      <div>
+        <ReactPaginate
+          className="flex gap-5"
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={7}
+          pageCount={pageCount}
+          previousLabel="< previous"
+          // renderOnZeroPageCount={null}
+        />
+      </div>
+    </main>
   )
 }
 
