@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { getProfile } from '../../store/slices/profileSlice/profileAction'
+import noAvatarLarge from './../../assets/img/no-avatar-large.png'
 
 type Params = {
   id?: string
@@ -22,10 +23,7 @@ const ProfilePage: FC = () => {
   return (
     <main className="grow">
       <img
-        src={
-          profileInfo.photos.large ||
-          'https://cdn-icons-png.flaticon.com/512/149/149071.png'
-        }
+        src={profileInfo.photos.large || noAvatarLarge}
         alt="avatar"
         width="300px"
       />

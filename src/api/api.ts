@@ -1,10 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import {
   userInfoLogin,
   userInfoLoginResponse,
   userLoginCaptcha,
 } from '../models.ts/auth'
-import { ProfileType, ProfileTypeResponse } from '../models.ts/profile'
+import { ProfileTypeResponse } from '../models.ts/profile'
+import { UsersTypeResponse } from '../models.ts/users'
 
 const instance = axios.create({
   withCredentials: true,
@@ -35,5 +36,11 @@ export const securityAPI = {
 export const profileAPI = {
   getProfile(userId: string) {
     return instance.get<ProfileTypeResponse>(`profile/${userId}`)
+  },
+}
+
+export const usersAPI = {
+  getUsers(count: number = 10, page: number = 1) {
+    return instance.get<UsersTypeResponse>(`users?count=${count}&page=${page}`)
   },
 }

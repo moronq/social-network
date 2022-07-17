@@ -7,6 +7,7 @@ export const login = createAsyncThunk(
   async (userInfo: userInfoLogin, thunkAPI) => {
     try {
       const response = await authAPI.login(userInfo)
+      console.log(response)
       if (response.data.resultCode === 0) {
         return response.data
       } else if (response.data.resultCode === 10) {
