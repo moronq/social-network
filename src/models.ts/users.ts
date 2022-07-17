@@ -6,7 +6,6 @@ export type UsersTypeResponse = {
 
 export type UsersInitialType = UsersTypeResponse & {
   isLoadingUsers: boolean
-  isFollowing: boolean
 }
 export type UserType = {
   name: string

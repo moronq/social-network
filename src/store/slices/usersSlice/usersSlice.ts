@@ -8,7 +8,6 @@ const initialState: UsersInitialType = {
   items: [],
   totalCount: 0,
   isLoadingUsers: false,
-  isFollowing: false,
 }
 
 export const usersSlice = createSlice({
@@ -33,28 +32,22 @@ export const usersSlice = createSlice({
     },
     [follow.pending.type]: (state) => {
       state.error = null
-      state.isFollowing = true
     },
     [follow.fulfilled.type]: (state, action: PayloadAction<number>) => {
-      state.isFollowing = false
       updateObjectInArray(state.items, action.payload, 'id', { followed: true })
     },
     [follow.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isFollowing = false
       state.error = action.payload
     },
     [unfollow.pending.type]: (state) => {
       state.error = null
-      state.isFollowing = true
     },
     [unfollow.fulfilled.type]: (state, action: PayloadAction<number>) => {
-      state.isFollowing = false
       updateObjectInArray(state.items, action.payload, 'id', {
         followed: false,
       })
     },
     [unfollow.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isFollowing = false
       state.error = action.payload
     },
   },

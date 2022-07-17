@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { usersAPI } from '../api/api'
-import { useAppDispatch } from '../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { follow, unfollow } from '../store/slices/usersSlice/usersAction'
 import noAvatarSmall from './../assets/img/no-avatar-small.png'
 
@@ -15,11 +15,14 @@ type UserItemType = {
 
 const UserItem: FC<UserItemType> = ({ photo, name, status, followed, id }) => {
   const dispatch = useAppDispatch()
+  const [waiting, setWaiting] = useState(false)
   const onFollowClick = () => {
     if (!followed) {
-      dispatch(follow(id))
+      setWaiting(true)
+      dispatch(follow(id)).then((res) => setWaiting(false))
     } else {
-      dispatch(unfollow(id))
+      setWaiting(true)
+      dispatch(unfollow(id)).then((res) => setWaiting(false))
     }
   }
 
@@ -31,8 +34,9 @@ const UserItem: FC<UserItemType> = ({ photo, name, status, followed, id }) => {
       <p>{name}</p>
       <p>{status || 'Не придумал статус'}</p>
       <button
+        disabled={waiting}
         onClick={onFollowClick}
-        className="bg-slate-300 px-2 hover:bg-slate-100"
+        className="bg-slate-300 px-2 hover:bg-slate-100 disabled:text-white"
       >
         {followed ? 'unfollow' : 'follow'}
       </button>
