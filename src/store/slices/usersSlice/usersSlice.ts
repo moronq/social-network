@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UsersInitialType, UsersTypeResponse } from '../../../models.ts/users'
+import {
+  UsersInitialType,
+  UsersTypeResponse,
+  UserType,
+} from '../../../models.ts/users'
 import { updateObjectInArray } from '../../../utils/utils'
-import { fetchUsers, follow, unfollow } from './usersAction'
+import { fetchUsers, follow, searchUsers, unfollow } from './usersAction'
 
 const initialState: UsersInitialType = {
   error: null,
@@ -49,6 +53,13 @@ export const usersSlice = createSlice({
     },
     [unfollow.rejected.type]: (state, action: PayloadAction<string>) => {
       state.error = action.payload
+    },
+    [searchUsers.fulfilled.type]: (
+      state,
+      action: PayloadAction<UsersTypeResponse>
+    ) => {
+      state.items = action.payload.items
+      state.totalCount = action.payload.totalCount
     },
   },
 })

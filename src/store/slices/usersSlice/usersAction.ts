@@ -51,3 +51,11 @@ export const unfollow = createAsyncThunk(
     }
   }
 )
+
+export const searchUsers = createAsyncThunk(
+  'users/search',
+  async (search: string, thunkAPI) => {
+    const response = await usersAPI.search(search)
+    return response.data
+  }
+)

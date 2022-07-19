@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 import {
   userInfoLogin,
   userInfoLoginResponse,
@@ -48,5 +48,8 @@ export const usersAPI = {
   },
   unfollow(userId: number) {
     return instance.delete(`follow/${userId}`)
+  },
+  search(search: string) {
+    return instance.get<Array<UsersTypeResponse>>(`users?term=${search}`)
   },
 }
