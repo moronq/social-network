@@ -25,30 +25,36 @@ const AuthPage = () => {
     setRememberMe((prev) => (prev = !prev))
   }
   return (
-    <>
-      <form className="flex flex-col " onSubmit={(e) => onSubmit(e)}>
+    <div className="flex h-[calc(100vh-3rem)] w-full justify-center items-center">
+      <form
+        className="flex flex-col gap-7 p-10 w-96"
+        onSubmit={(e) => onSubmit(e)}
+      >
         <label>
+          Email
           <input
-            className="border-2 border-slate-400"
+            className="border-2 border-slate-400 p-1 w-full"
             type="text"
             autoComplete="off"
             {...email}
           />
         </label>
         <label>
+          Password
           <input
-            className="border-2 border-slate-400"
+            className="border-2 border-slate-400 p-1 w-full"
             type="password"
             {...password}
           />
         </label>
         {error && <p className="text-red-800">{error}</p>}
-        <label>
+        <label className="flex gap-5">
           <input
             type="checkbox"
             checked={rememberMe}
             onChange={rememberMeHandler}
           />
+          Remember me
         </label>
         {captcha && (
           <label>
@@ -60,9 +66,9 @@ const AuthPage = () => {
             />
           </label>
         )}
-        <button>Войти</button>
+        <button className="bg-indigo-400 text-white p-1">Войти</button>
       </form>
-    </>
+    </div>
   )
 }
 
