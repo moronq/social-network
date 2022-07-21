@@ -4,7 +4,7 @@ import {
   userInfoLoginResponse,
   userLoginCaptcha,
 } from '../models.ts/auth'
-import { ProfileTypeResponse } from '../models.ts/profile'
+import { ProfileResponse, ProfileTypeResponse } from '../models.ts/profile'
 import { FollowTypeResponse, UsersTypeResponse } from '../models.ts/users'
 
 const instance = axios.create({
@@ -36,6 +36,12 @@ export const securityAPI = {
 export const profileAPI = {
   getProfile(userId: string) {
     return instance.get<ProfileTypeResponse>(`profile/${userId}`)
+  },
+  getStatus(userId: string) {
+    return instance.get<ProfileResponse>('profile/status/' + userId)
+  },
+  setStatus(status: string) {
+    return instance.put<ProfileResponse>('profile/status', { status: status })
   },
 }
 

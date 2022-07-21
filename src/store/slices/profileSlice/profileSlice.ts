@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ProfileType, ProfileTypeResponse } from '../../../models.ts/profile'
-import { getProfile } from './profileAction'
+import {
+  ProfileType,
+  ProfileTypeResponse,
+  ProfileTypeStatus,
+} from '../../../models.ts/profile'
+import { getProfile, getStatus, setStatus } from './profileAction'
 
-const initialState: ProfileType = {
+const initialState: ProfileType & ProfileTypeStatus = {
+  status: '',
   aboutMe: '',
   userId: null,
   fullName: '',
@@ -41,6 +46,12 @@ export const profileSlice = createSlice({
     },
     [getProfile.rejected.type]: (state, action: PayloadAction<string>) => {
       state.error = action.payload
+    },
+    [getStatus.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.status = action.payload
+    },
+    [setStatus.fulfilled.type]: (state, action: PayloadAction<string>) => {
+      state.status = action.payload
     },
   },
 })
