@@ -53,6 +53,9 @@ export const profileSlice = createSlice({
     [setStatus.fulfilled.type]: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
+    [setStatus.rejected.type]: (state, action: PayloadAction<string>) => {
+      state.error = action.payload
+    },
   },
 })
 

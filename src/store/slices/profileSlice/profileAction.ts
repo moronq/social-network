@@ -30,12 +30,18 @@ type setStatusPayloadType = {
 }
 
 export const setStatus = createAsyncThunk(
-  'profile/set/Status',
+  'profile/setStatus',
   async (setStatusPayload: setStatusPayloadType, thunkAPI) => {
-    const response = await profileAPI.setStatus(setStatusPayload.status)
-    if (response.data.resultCode === 0) {
-      const responseStatus = await profileAPI.getStatus(setStatusPayload.userId)
-      return responseStatus.data
+    try {
+      const response = await profileAPI.setStatus(setStatusPayload.status)
+      if (response.data.resultCode === 0) {
+        const responseStatus = await profileAPI.getStatus(
+          setStatusPayload.userId
+        )
+        return responseStatus.data
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue('ошибка при изменении статуса')
     }
   }
 )
