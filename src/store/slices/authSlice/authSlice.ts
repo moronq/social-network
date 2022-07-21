@@ -3,7 +3,7 @@ import {
   userInfoLoginResponse,
   userLoginResponseCaptcha,
   userLoginResponseError,
-} from '../../../models.ts/auth'
+} from '../../../models/auth'
 import { login } from './authAction'
 
 type initialStateType = {

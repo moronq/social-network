@@ -3,7 +3,7 @@ import {
   UsersInitialType,
   UsersTypeResponse,
   UserType,
-} from '../../../models.ts/users'
+} from '../../../models/users'
 import { updateObjectInArray } from '../../../utils/utils'
 import { fetchUsers, follow, searchUsers, unfollow } from './usersAction'
 

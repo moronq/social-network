@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { usersAPI } from '../../../api/api'
-import { QuerryParams } from '../../../models.ts/users'
+import { QuerryParams } from '../../../models/users'
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',

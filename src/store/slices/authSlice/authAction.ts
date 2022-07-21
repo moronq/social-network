@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { authAPI, securityAPI } from '../../../api/api'
-import { userInfoLogin } from '../../../models.ts/auth'
+import { userInfoLogin } from '../../../models/auth'
 
 export const login = createAsyncThunk(
   'auth/login',

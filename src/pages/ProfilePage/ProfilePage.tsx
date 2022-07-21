@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
   getProfile,
   getStatus,
+  setPhoto,
 } from '../../store/slices/profileSlice/profileAction'
 import noAvatarLarge from './../../assets/img/no-avatar-large.png'
 
@@ -25,6 +26,11 @@ const ProfilePage: FC = () => {
   }, [userId])
 
   const profileInfo = useAppSelector((state) => state.profile)
+  const onMainPhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
+      dispatch(setPhoto(e.target.files[0]))
+    }
+  }
 
   return (
     <main className="grow">
@@ -33,6 +39,9 @@ const ProfilePage: FC = () => {
         alt="avatar"
         width="300px"
       />
+      {userId === localStorage.getItem('userId') && (
+        <input type="file" onChange={(e) => onMainPhotoSelect(e)} />
+      )}
       <div>{profileInfo.fullName}</div>
       <div>{profileInfo.aboutMe}</div>
       <ProfileStatus userId={userId as string} status={profileInfo.status} />

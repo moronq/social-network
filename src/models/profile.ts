@@ -5,10 +5,12 @@ export type ProfileTypeResponse = {
   lookingForAJobDescription: string
   fullName: string
   contacts: ContactsType
-  photos: {
-    small: string
-    large: string
-  }
+  photos: PhotosType
+}
+
+export type PhotosType = {
+  small: string
+  large: string
 }
 
 export type ProfileTypeStatus = {
@@ -28,9 +30,9 @@ type ContactsType = {
   mainLkink: string | null
 }
 
-export type ProfileResponse = {
+export type ProfileResponse<T = any> = {
   resultCode: number
-  data: any
+  data: T
   fieldsError: Array<string>
   messages: Array<string>
 }

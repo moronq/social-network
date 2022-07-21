@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { profileAPI } from '../../../api/api'
-import { ProfileResponse } from '../../../models.ts/profile'
+import { ProfileResponse } from '../../../models/profile'
 
 export const getProfile = createAsyncThunk(
   'profile/getProfile',
@@ -43,5 +43,13 @@ export const setStatus = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue('ошибка при изменении статуса')
     }
+  }
+)
+
+export const setPhoto = createAsyncThunk(
+  'profile/setPhoto',
+  async (image: File, thunkAPI) => {
+    const response = await profileAPI.setPhoto(image)
+    return response.data
   }
 )

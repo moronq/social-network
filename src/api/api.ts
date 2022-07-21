@@ -3,9 +3,9 @@ import {
   userInfoLogin,
   userInfoLoginResponse,
   userLoginCaptcha,
-} from '../models.ts/auth'
-import { ProfileResponse, ProfileTypeResponse } from '../models.ts/profile'
-import { FollowTypeResponse, UsersTypeResponse } from '../models.ts/users'
+} from '../models/auth'
+import { ProfileResponse, ProfileTypeResponse } from '../models/profile'
+import { FollowTypeResponse, UsersTypeResponse } from '../models/users'
 
 const instance = axios.create({
   withCredentials: true,
@@ -42,6 +42,15 @@ export const profileAPI = {
   },
   setStatus(status: string) {
     return instance.put<ProfileResponse>('profile/status', { status: status })
+  },
+  setPhoto(image: File) {
+    const formData = new FormData()
+    formData.append('image', image)
+    return instance.put('profile/photo', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
   },
 }
 
