@@ -49,7 +49,11 @@ export const setStatus = createAsyncThunk(
 export const setPhoto = createAsyncThunk(
   'profile/setPhoto',
   async (image: File, thunkAPI) => {
-    const response = await profileAPI.setPhoto(image)
-    return response.data
+    try {
+      const response = await profileAPI.setPhoto(image)
+      return response.data
+    } catch (e) {
+      thunkAPI.rejectWithValue('Ошибка при обновлении фото')
+    }
   }
 )
