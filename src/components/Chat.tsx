@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { ChateMessageType } from '../models/messages'
 import { setMessages } from '../store/slices/messagesSlice/messagesSlice'
 import AddMessageForm from './AddMessageForm'
 import Message from './Message'
@@ -17,7 +16,7 @@ const Chat: FC = () => {
       const newMessage = JSON.parse(e.data)
       dispatch(setMessages(newMessage))
     })
-  }, [])
+  }, [messages])
   return (
     <div className="h-full w-full flex flex-col ">
       <div className="flex grow border-2 overflow-y-auto p-2">
