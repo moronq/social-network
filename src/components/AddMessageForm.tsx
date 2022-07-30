@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
+import { useAppDispatch } from '../hooks/redux'
+import { sendMessage } from '../store/slices/messagesSlice/messageAction'
 
-type AddMessageFormType = {
-  ws: WebSocket
-}
-
-const AddMessageForm: FC<AddMessageFormType> = ({ ws }) => {
+const AddMessageForm: FC = () => {
   const [value, setValue] = useState('')
+  // const [isReady, setIsReady] = useState<'pending' | 'ready'>('pending')
+  const dispatch = useAppDispatch()
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value)
@@ -13,7 +13,7 @@ const AddMessageForm: FC<AddMessageFormType> = ({ ws }) => {
 
   const onClickHandler = () => {
     if (value) {
-      ws.send(value)
+      dispatch(sendMessage(value))
       setValue('')
     }
   }
