@@ -16,8 +16,13 @@ const messageHandler = (e: MessageEvent) => {
   subscribers.forEach((s) => s(newMessage))
 }
 
-function createChannel() {
+const cleanUp = () => {
   ws?.removeEventListener('close', closeHandler)
+  ws?.addEventListener('message', messageHandler)
+}
+
+function createChannel() {
+  cleanUp()
   ws?.close()
   ws = new WebSocket(
     'wss://social-network.samuraijs.com/handlers/ChatHandler.ashx'
@@ -31,8 +36,7 @@ export const chatAPI = {
     createChannel()
   },
   stop() {
-    ws?.removeEventListener('close', closeHandler)
-    ws?.removeEventListener('message', messageHandler)
+    cleanUp()
     ws?.close()
     subscribers = []
   },

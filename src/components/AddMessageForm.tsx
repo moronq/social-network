@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
-import { useAppDispatch } from '../hooks/redux'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { sendMessage } from '../store/slices/messagesSlice/messageAction'
 
 const AddMessageForm: FC = () => {
   const [value, setValue] = useState('')
-  // const [isReady, setIsReady] = useState<'pending' | 'ready'>('pending')
   const dispatch = useAppDispatch()
+  const { status } = useAppSelector((state) => state.messages)
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value)
@@ -27,7 +27,9 @@ const AddMessageForm: FC = () => {
         name="message"
         placeholder="Начните набирать ваше сообщение"
       />
-      <button onClick={onClickHandler}>Отправить</button>
+      <button disabled={status !== 'ready'} onClick={onClickHandler}>
+        Отправить
+      </button>
     </div>
   )
 }
