@@ -1,36 +1,38 @@
-import { FC, useState } from 'react'
+import { Field, Form, Formik } from 'formik'
+import { FC } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { sendMessage } from '../store/slices/messagesSlice/messageAction'
 
 const AddMessageForm: FC = () => {
-  const [value, setValue] = useState('')
   const dispatch = useAppDispatch()
-  const { status } = useAppSelector((state) => state.messages)
-
-  const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value)
-  }
-
-  const onClickHandler = () => {
-    if (value) {
-      dispatch(sendMessage(value))
-      setValue('')
-    }
-  }
+  // const { status } = useAppSelector((state) => state.messages)
 
   return (
-    <div className="flex">
-      <textarea
-        value={value}
-        onChange={(e) => onChangeHandler(e)}
-        className="grow p-2"
-        name="message"
-        placeholder="Начните набирать ваше сообщение"
-      />
-      <button disabled={status !== 'ready'} onClick={onClickHandler}>
-        Отправить
-      </button>
-    </div>
+    <Formik
+      initialValues={{
+        message: '',
+      }}
+      onSubmit={(values, actions) => {
+        if (values.message) {
+          dispatch(sendMessage(values.message))
+          actions.setSubmitting(false)
+          values.message = ''
+        }
+      }}
+    >
+      <Form className="flex items-center">
+        <Field
+          className="grow  p-2"
+          as="textarea"
+          name="message"
+          type="text"
+          placeholder="Начните набирать ваше сообщение"
+        />
+        <button className="h-full" type="submit">
+          Отправить
+        </button>
+      </Form>
+    </Formik>
   )
 }
 
