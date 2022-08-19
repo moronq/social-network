@@ -52,7 +52,6 @@ const UsersPage = () => {
           pageRangeDisplayed={7}
           pageCount={pageCount}
           previousLabel="< previous"
-          // renderOnZeroPageCount={null}
         />
       </div>
     </main>

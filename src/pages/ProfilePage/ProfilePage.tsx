@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ProfileStatus from '../../components/ProfileStatus'
+import UploadAvatar from '../../components/UploadAvatar'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
   getProfile,
   getStatus,
-  setPhoto,
 } from '../../store/slices/profileSlice/profileAction'
 import noAvatarLarge from './../../assets/img/no-avatar-large.png'
 
@@ -26,28 +26,29 @@ const ProfilePage: FC = () => {
   }, [userId])
 
   const profileInfo = useAppSelector((state) => state.profile)
-  const onMainPhotoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length) {
-      dispatch(setPhoto(e.target.files[0]))
-    }
-  }
+  const {
+    fullName,
+    aboutMe,
+    status,
+    lookingForAJob,
+    lookingForAJobDescription,
+    photos,
+  } = profileInfo
 
   return (
     <main className="grow">
-      <img
-        src={profileInfo.photos.large || noAvatarLarge}
-        alt="avatar"
-        width="300px"
-      />
-      {userId === localStorage.getItem('userId') && (
-        <input type="file" onChange={(e) => onMainPhotoSelect(e)} />
+      <img src={photos.large || noAvatarLarge} alt="avatar" width="300px" />
+      {userId === localStorage.getItem('userId') ? (
+        <UploadAvatar />
+      ) : (
+        <button>Написать сообщение</button>
       )}
-      <div>{profileInfo.fullName}</div>
-      <div>{profileInfo.aboutMe}</div>
-      <ProfileStatus userId={userId as string} status={profileInfo.status} />
+      <p>{fullName}</p>
+      <p>{aboutMe}</p>
+      <ProfileStatus userId={userId as string} status={status} />
       <ul>
-        {profileInfo.lookingForAJob && <li>Нахожусь в поиске работы</li>}
-        <li>{profileInfo.lookingForAJobDescription}</li>
+        {lookingForAJob && <li>Нахожусь в поиске работы</li>}
+        <li>{lookingForAJobDescription}</li>
       </ul>
     </main>
   )
