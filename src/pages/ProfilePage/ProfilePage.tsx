@@ -1,13 +1,12 @@
 import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import ProfileStatus from '../../components/ProfileStatus'
-import UploadAvatar from '../../components/UploadAvatar'
+import ProfileAvatar from '../../components/ProfileAvatar'
+import UserInfo from '../../components/ProfileInfo'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import {
   getProfile,
   getStatus,
 } from '../../store/slices/profileSlice/profileAction'
-import noAvatarLarge from './../../assets/img/no-avatar-large.png'
 
 type Params = {
   id?: string
@@ -26,30 +25,11 @@ const ProfilePage: FC = () => {
   }, [userId])
 
   const profileInfo = useAppSelector((state) => state.profile)
-  const {
-    fullName,
-    aboutMe,
-    status,
-    lookingForAJob,
-    lookingForAJobDescription,
-    photos,
-  } = profileInfo
 
   return (
-    <main className="grow">
-      <img src={photos.large || noAvatarLarge} alt="avatar" width="300px" />
-      {userId === localStorage.getItem('userId') ? (
-        <UploadAvatar />
-      ) : (
-        <button>Написать сообщение</button>
-      )}
-      <p>{fullName}</p>
-      <p>{aboutMe}</p>
-      <ProfileStatus userId={userId as string} status={status} />
-      <ul>
-        {lookingForAJob && <li>Нахожусь в поиске работы</li>}
-        <li>{lookingForAJobDescription}</li>
-      </ul>
+    <main className="grow flex gap-4">
+      <ProfileAvatar photos={profileInfo.photos} userId={userId as string} />
+      <UserInfo profileInfo={profileInfo} userId={userId as string} />
     </main>
   )
 }

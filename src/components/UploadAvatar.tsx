@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../hooks/redux'
 import { setPhoto } from '../store/slices/profileSlice/profileAction'
+import Button from './common/Button'
 
 const UploadAvatar = () => {
   const dispatch = useAppDispatch()
@@ -14,13 +15,20 @@ const UploadAvatar = () => {
     }
   }
 
+  const disableEditMode = () => {
+    setEditMode(false)
+  }
+  const enableEditMode = () => {
+    setEditMode(true)
+  }
+
   return editMode ? (
     <>
       <input type="file" onChange={(e) => onMainPhotoSelect(e)} />
-      <button onClick={() => setEditMode(false)}>отменить</button>
+      <Button onClick={disableEditMode}>Cancel</Button>
     </>
   ) : (
-    <button onClick={() => setEditMode(true)}>изменить аватар</button>
+    <Button onClick={enableEditMode}>Change avatar</Button>
   )
 }
 

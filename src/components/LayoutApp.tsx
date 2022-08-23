@@ -24,7 +24,7 @@ const LayoutApp = () => {
           </div>
         </div>
       </nav>
-      <div className="max-w-5xl mx-auto px-4 flex gap-4">
+      <div className="max-w-5xl mx-auto px-4 flex gap-4 p-4">
         {isAuth && <SideBar />}
         <Outlet />
       </div>
