@@ -20,7 +20,7 @@ const Chat: FC = () => {
 
   return (
     <div className="h-full w-full flex flex-col ">
-      <div className="flex grow border-2 overflow-y-auto p-2">
+      <div className="flex grow border rounded-lg overflow-y-auto p-2">
         <ul className="flex gap-5 flex-col">
           {messages.map((el, index) => {
             return <Message key={index} message={el} userId={el.userId} />

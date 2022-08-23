@@ -1,8 +1,8 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { logout } from '../store/slices/authSlice/authSlice'
 import SideBar from './SideBar'
+import noAvatarSmall from './../assets/img/no-avatar-small.png'
 
 const LayoutApp = () => {
   const { isAuth } = useAppSelector((state) => state.auth)
@@ -10,6 +10,10 @@ const LayoutApp = () => {
   const onLogoutClick = () => {
     dispatch(logout())
   }
+
+  const avatar = useAppSelector(
+    (state) => state.profile.photos.small || noAvatarSmall
+  )
 
   return (
     <>
@@ -19,8 +23,18 @@ const LayoutApp = () => {
             logo
           </div>
           <div className="flex items-center hover:bg-slate-300 px-3 hover:cursor-pointer">
-            user
-            {isAuth && <button onClick={onLogoutClick}>Logout</button>}
+            <img
+              src={avatar}
+              alt="user-avatar"
+              height={'40px'}
+              width={'40px'}
+              className="rounded-full"
+            />
+            {isAuth && (
+              <button className=" ml-3" onClick={onLogoutClick}>
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </nav>
