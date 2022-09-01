@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks/redux'
 import { logout } from '../store/slices/authSlice/authSlice'
-import SideBar from './SideBar'
+import SideBar from './SideBar/SideBar'
 import noAvatarSmall from './../assets/img/no-avatar-small.png'
 
 const LayoutApp = () => {
