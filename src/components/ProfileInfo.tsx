@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import { ProfileType, ProfileTypeStatus } from '../models/profile'
-import Button from './common/Button'
+import Button from './common/Button/Button'
 import ProfileStatus from './ProfileStatus'
 
 type PropsType = {

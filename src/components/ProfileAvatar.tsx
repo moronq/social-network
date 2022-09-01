@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import noAvatarLarge from './../assets/img/no-avatar-large.png'
-import Button from './common/Button'
+import Button from './common/Button/Button'
 import UploadAvatar from './UploadAvatar'
 
 type PropsType = {

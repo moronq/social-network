@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '../hooks/redux'
 import { setPhoto } from '../store/slices/profileSlice/profileAction'
-import Button from './common/Button'
+import Button from './common/Button/Button'
 
 const UploadAvatar = () => {
   const dispatch = useAppDispatch()
