@@ -8,16 +8,18 @@ import AddMessageForm from './AddMessageForm'
 jest.useFakeTimers()
 
 describe('AddMessageForm test group', () => {
-  test('AddMessageForm renders', () => {
+  test('AddMessageForm renders', async () => {
     render(
       <Provider store={store}>
         <AddMessageForm />
       </Provider>
     )
-    expect(screen.getByRole('textbox')).toBeInTheDocument
-    expect(screen.getByRole('button')).toBeInTheDocument
-    expect(screen.getByPlaceholderText('Начните писать сообщение...'))
-      .toBeInTheDocument
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument
+      expect(screen.getByRole('button')).toBeInTheDocument
+      expect(screen.getByPlaceholderText('Начните писать сообщение...'))
+        .toBeInTheDocument
+    })
   })
   test('user print text', async () => {
     render(
@@ -39,5 +41,13 @@ describe('AddMessageForm test group', () => {
     expect(screen.getByRole('button')).toBeDisabled
     userEvent.type(screen.getByRole('textbox'), 'test')
     await waitFor(() => expect(screen.getByRole('button')).toBeEnabled)
+  })
+  test('snapshot test', () => {
+    const AddMessageFormComponent = render(
+      <Provider store={store}>
+        <AddMessageForm />
+      </Provider>
+    )
+    expect(AddMessageFormComponent).toMatchSnapshot()
   })
 })

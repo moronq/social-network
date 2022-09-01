@@ -5,7 +5,7 @@ import {
   stoptMessagesListening,
 } from '../store/slices/messagesSlice/messageAction'
 import AddMessageForm from './AddMessageForm/AddMessageForm'
-import Message from './Message'
+import Message from './Message/Message'
 
 const Chat: FC = () => {
   const dispatch = useAppDispatch()
@@ -23,7 +23,7 @@ const Chat: FC = () => {
       <div className="flex grow border rounded-lg overflow-y-auto p-2">
         <ul className="flex gap-5 flex-col">
           {messages.map((el, index) => {
-            return <Message key={index} message={el} userId={el.userId} />
+            return <Message key={index} message={el} />
           })}
         </ul>
       </div>
