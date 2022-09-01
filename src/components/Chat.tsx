@@ -4,7 +4,7 @@ import {
   startMessagesListening,
   stoptMessagesListening,
 } from '../store/slices/messagesSlice/messageAction'
-import AddMessageForm from './AddMessageForm'
+import AddMessageForm from './AddMessageForm/AddMessageForm'
 import Message from './Message'
 
 const Chat: FC = () => {

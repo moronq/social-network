@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { FC } from 'react'
-import { useAppDispatch } from '../hooks/redux'
-import { sendMessage } from '../store/slices/messagesSlice/messageAction'
+import { useAppDispatch } from '../../hooks/redux'
+import { sendMessage } from '../../store/slices/messagesSlice/messageAction'
 
 const AddMessageForm: FC = () => {
   const dispatch = useAppDispatch()
@@ -27,6 +27,7 @@ const AddMessageForm: FC = () => {
             onChange={props.handleChange}
             onBlur={props.handleBlur}
             value={props.values.message}
+            placeholder="Начните писать сообщение..."
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault()
@@ -34,7 +35,11 @@ const AddMessageForm: FC = () => {
               }
             }}
           ></textarea>
-          <button className="h-full" type="submit">
+          <button
+            disabled={!props.values.message}
+            className="h-full disabled:text-slate-300"
+            type="submit"
+          >
             Отправить
           </button>
         </form>
