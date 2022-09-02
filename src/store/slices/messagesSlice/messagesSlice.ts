@@ -23,8 +23,11 @@ export const messagesSlice = createSlice({
     changeStatus(state, action: PayloadAction<StatusType>) {
       state.status = action.payload
     },
+    deleteMessages(state) {
+      state.messages = []
+    },
   },
 })
 
-export const { setMessages } = messagesSlice.actions
+export const { setMessages, deleteMessages } = messagesSlice.actions
 export default messagesSlice.reducer

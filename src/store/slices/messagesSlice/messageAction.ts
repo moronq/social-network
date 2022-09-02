@@ -1,7 +1,7 @@
 import { chatAPI } from '../../../api/chat-api'
 import { ChateMessageType } from '../../../models/messages'
 import { AppDispatch } from '../../store'
-import { setMessages } from './messagesSlice'
+import { deleteMessages, setMessages } from './messagesSlice'
 
 let _newMessageHandler: ((messages: Array<ChateMessageType>) => void) | null =
   null
@@ -24,6 +24,7 @@ export const startMessagesListening = () => async (dispatch: AppDispatch) => {
 export const stoptMessagesListening = () => async (dispatch: AppDispatch) => {
   chatAPI.unsubscribe(newMessageHandlerCreator(dispatch))
   chatAPI.stop()
+  dispatch(deleteMessages())
 }
 
 export const sendMessage =
