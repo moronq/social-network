@@ -35,4 +35,8 @@ describe('ProfileAvatar test group', () => {
     expect(photo.src).toBe('http://localhost/no-avatar-large.png')
     expect(screen.getByAltText<HTMLImageElement>('avatar')).toBeInTheDocument
   })
+  test('ProfileAvatar snapshot', () => {
+    const element = render(<ProfileAvatar {...emptyProfileAvatarMock} />)
+    expect(element).toMatchSnapshot()
+  })
 })
