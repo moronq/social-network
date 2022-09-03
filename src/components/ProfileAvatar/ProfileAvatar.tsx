@@ -1,8 +1,7 @@
-import React, { FC } from 'react'
-import noAvatarLarge from './../assets/img/no-avatar-large.png'
-import Button from './common/Button/Button'
-import UploadAvatar from './UploadAvatar'
-
+import { FC } from 'react'
+import noAvatarLarge from '../../assets/img/no-avatar-large.png'
+import Button from '../common/Button/Button'
+import UploadAvatar from '../UploadAvatar'
 type PropsType = {
   photos: {
     large: string

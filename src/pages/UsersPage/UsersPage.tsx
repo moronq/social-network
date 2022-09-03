@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 import SearchInput from '../../components/SearchInput'
-import UserItem from '../../components/UserItem'
+import UserItem from '../../components/UserItem/UserItem'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { fetchUsers } from '../../store/slices/usersSlice/usersAction'
 

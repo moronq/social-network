@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { usersAPI } from '../api/api'
-import { useAppDispatch, useAppSelector } from '../hooks/redux'
-import { follow, unfollow } from '../store/slices/usersSlice/usersAction'
-import noAvatarSmall from './../assets/img/no-avatar-small.png'
+import { usersAPI } from '../../api/api'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { follow, unfollow } from '../../store/slices/usersSlice/usersAction'
+import noAvatarSmall from '../../assets/img/no-avatar-small.png'
 
 type UserItemType = {
   photo: string | null
@@ -19,10 +19,10 @@ const UserItem: FC<UserItemType> = ({ photo, name, status, followed, id }) => {
   const onFollowClick = () => {
     if (!followed) {
       setWaiting(true)
-      dispatch(follow(id)).then((res) => setWaiting(false))
+      dispatch(follow(id)).then(() => setWaiting(false))
     } else {
       setWaiting(true)
-      dispatch(unfollow(id)).then((res) => setWaiting(false))
+      dispatch(unfollow(id)).then(() => setWaiting(false))
     }
   }
 
