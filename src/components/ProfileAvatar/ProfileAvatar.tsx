@@ -11,6 +11,8 @@ type PropsType = {
 }
 
 const ProfileAvatar: FC<PropsType> = ({ photos, userId }) => {
+  const onMessageClick = () => {}
+
   return (
     <div className="flex flex-col gap-4">
       <img

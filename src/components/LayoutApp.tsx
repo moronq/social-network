@@ -17,7 +17,7 @@ const LayoutApp = () => {
 
   return (
     <>
-      <nav className=" bg-slate-200">
+      <nav className="bg-slate-200">
         <div className="flex justify-between border max-w-5xl mx-auto px-4 h-12 ">
           <div className="flex items-center hover:bg-slate-300 px-3 hover:cursor-pointer">
             logo
