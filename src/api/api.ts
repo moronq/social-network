@@ -68,3 +68,12 @@ export const usersAPI = {
     return instance.get<Array<UsersTypeResponse>>(`users?term=${search}`)
   },
 }
+
+export const dialogAPI = {
+  fetchDialogs() {
+    return instance.get('dialogs')
+  },
+  startDialog(userId: string) {
+    return instance.put<ProfileResponse>('dialogs/' + userId)
+  },
+}

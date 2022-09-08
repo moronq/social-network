@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import Button from '../../components/common/Button/Button'
 import ProfileAvatar from '../../components/ProfileAvatar/ProfileAvatar'
 import UserInfo from '../../components/ProfileInfo/ProfileInfo'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'

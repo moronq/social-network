@@ -45,6 +45,9 @@ export const profileSlice = createSlice({
       action: PayloadAction<ProfileTypeResponse>
     ) => {
       Object.assign(state, action.payload)
+      if (action.payload.userId?.toString() == localStorage.getItem('userId')) {
+        localStorage.setItem('userAvatarSmall', action.payload.photos.small)
+      }
     },
     [getProfile.rejected.type]: (state, action: PayloadAction<string>) => {
       state.error = action.payload

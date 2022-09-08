@@ -35,6 +35,7 @@ export const authSlice = createSlice({
       state.error = null
       localStorage.removeItem('auth')
       localStorage.removeItem('userId')
+      localStorage.removeItem('userAvatarSmall')
     },
     setIsAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload
