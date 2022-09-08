@@ -9,31 +9,37 @@ Object {
         <ul
           class="flex flex-col w-36 gap-0.5 cursor-pointer"
         >
-          <li
-            class="px-2 rounded-md hover:bg-slate-100 "
-          >
+          <li>
             <a
               href="/profile"
             >
-              My profile
+              <div
+                class="px-2 rounded-md hover:bg-slate-100 "
+              >
+                My profile
+              </div>
             </a>
           </li>
-          <li
-            class="px-2 rounded-md hover:bg-slate-100"
-          >
+          <li>
             <a
               href="/message"
             >
-              Messages
+              <div
+                class="px-2 rounded-md hover:bg-slate-100"
+              >
+                Messages
+              </div>
             </a>
           </li>
-          <li
-            class="px-2 rounded-md hover:bg-slate-100"
-          >
+          <li>
             <a
               href="/users"
             >
-              Users
+              <div
+                class="px-2 rounded-md hover:bg-slate-100"
+              >
+                Users
+              </div>
             </a>
           </li>
         </ul>
@@ -45,31 +51,37 @@ Object {
       <ul
         class="flex flex-col w-36 gap-0.5 cursor-pointer"
       >
-        <li
-          class="px-2 rounded-md hover:bg-slate-100 "
-        >
+        <li>
           <a
             href="/profile"
           >
-            My profile
+            <div
+              class="px-2 rounded-md hover:bg-slate-100 "
+            >
+              My profile
+            </div>
           </a>
         </li>
-        <li
-          class="px-2 rounded-md hover:bg-slate-100"
-        >
+        <li>
           <a
             href="/message"
           >
-            Messages
+            <div
+              class="px-2 rounded-md hover:bg-slate-100"
+            >
+              Messages
+            </div>
           </a>
         </li>
-        <li
-          class="px-2 rounded-md hover:bg-slate-100"
-        >
+        <li>
           <a
             href="/users"
           >
-            Users
+            <div
+              class="px-2 rounded-md hover:bg-slate-100"
+            >
+              Users
+            </div>
           </a>
         </li>
       </ul>
