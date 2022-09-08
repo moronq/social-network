@@ -10,10 +10,7 @@ const LayoutApp = () => {
   const onLogoutClick = () => {
     dispatch(logout())
   }
-
-  const avatar = useAppSelector(
-    (state) => state.profile.photos.small || noAvatarSmall
-  )
+  const avatar = localStorage.getItem('userAvatarSmall') || noAvatarSmall
 
   return (
     <>
